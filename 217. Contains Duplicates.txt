@@ -1,0 +1,105 @@
+https://leetcode.com/problems/contains-duplicate/submissions/
+
+
+//using a hashset
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        //sort or hashset
+        HashSet<Integer> set = new HashSet();
+        for(int i: nums){
+            if(!set.contains(i))
+                set.add(i);
+            else
+                return true;
+        }
+        return false;
+    }
+}
+
+// sorting using a built in sort
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+    
+        Arrays.sort(nums);
+        for(int i =0; i<nums.length-1; i++){
+            if(nums[i]==nums[i+1])
+                return true;
+        }
+        return false;
+    
+    }
+}
+
+//sorting using mergesort
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+    
+        //merge sort
+    
+        int left[] = new int[nums.length/2];
+        int right[] = new int[nums.length/2];
+        int i;
+        
+        //storing left and right into dedicated arrays
+        for( i=0; i<left.length; i++){
+            left[i]= nums[i];
+        }
+        for(int j=0; j<right.length; j++){
+            right[j]=nums[i];
+        }
+        
+    
+        int[] sorted= merge(left, right, nums);
+        
+      
+        for(int j =0; j<sorted.length-1; j++){
+            if(sorted[j] ==sorted[j+1])
+                return true;
+        }
+        
+        return false;
+        
+    }
+    
+    public int[] merge(int left[], int right[], int nums[]){
+        int leftLength =left.length;
+        int rightLength = right.length;
+        
+        int sorted[] = new int[nums.length];
+        
+        // 1 2  3 1
+        // 1 2 
+        
+        int i =0, j=0,k=0;
+        while(i<leftLength && j<rightLength){
+            if(left[i]<=right[i]){
+                sorted[k]=left[i];
+                i++;
+            }
+            else{
+                sorted[k]=right[j];
+                j++;
+            }
+        
+            k++;
+        }
+        
+        while(i<leftLength){
+            sorted[k]=left[i];
+            i++;
+            k++;
+        }
+        
+        while(j<rightLength){
+            sorted[k]=right[j];
+            j++;
+            k++;
+        }
+        
+          for(k=0; k<sorted.length; k++){
+            System.out.println(sorted[k]);
+        }
+        return sorted;
+    }
+    
+}
