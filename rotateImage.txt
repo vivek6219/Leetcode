@@ -1,0 +1,33 @@
+//naive solution (brute force)
+int[][] rotateImage(int[][] a) {
+  
+  int[][] newImage = new int[a.length][a.length];
+  int rowCounter =0, colCounter=a.length-1;
+   for(int i =0; i<a.length; i++){
+       for(int j=0; j<a[i].length; j++){
+           newImage[rowCounter][colCounter]=a[i][j];
+        rowCounter++;
+
+       }
+       rowCounter=0;
+       colCounter--;
+
+   }
+   
+   
+   for(int i=0; i<newImage.length; i++){
+       for(int j=0; j<newImage[i].length; j++){
+           System.out.println(newImage[i][j]);
+       }
+   }
+   return newImage;
+}
+
+//the first row is the nth col
+//the second row is the nth-1 col
+//the third row is the nth-2 col
+//[1 2 3]     [7 4 1]
+//[4 5 6]  =  [8 5 2]
+//[7 8 9]     [9 6 3] 
+
+
