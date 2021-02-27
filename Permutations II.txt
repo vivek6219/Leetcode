@@ -1,0 +1,36 @@
+//this is online solution . 
+class Solution {
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        //going to use a hashmap, that has the numbers given along with the count of how many times they are repeated
+        //this is going to give us unique permutations because we will decrement the repeated numbers every time they are           used
+        //going to be a backtracking algo implemenetation
+        
+        List<List<Integer>> res = new ArrayList<>();
+        if(nums==null || nums.length==0)
+            return res;
+        Arrays.sort(nums);
+        boolean[] used = new boolean[nums.length];
+        List<Integer> perm = new ArrayList<>();
+        dfs(nums,perm, used, res);
+        return res;
+    }
+    
+    private void dfs(int[] nums, List<Integer> perm, boolean[] used, List<List<Integer>> res){
+        if(perm.size() == nums.length){
+            res.add(new ArrayList<>(perm));
+            return;
+        }
+        for(int i=0; i<nums.length; i++){
+            if(used[i])
+                continue;
+            used[i]=true;
+            perm.add(nums[i]);
+            dfs(nums, perm, used, res);
+            perm.remove(perm.size()-1);
+            used[i]=false;
+            while(i+1<nums.length && nums[i] == nums[i+1]){
+                i++;
+            }
+        }
+    }
+}

@@ -14,3 +14,34 @@ class Solution {
     }
     
 }
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+       //brute force method would be to have two pointers that iterate through the list while seeing if the elements add            up to the target
+        //O(n^2) time 
+    
+        //a more optimized way to solve this problem instead would be to use a hashmap that stores the element + index
+        // and the sum of the indexes is returned
+        
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int complement;
+        
+        // 2 7 11 15 target =9
+        //complement = 9-2 = 7
+        //the complement is going to store the other part needed to get the target
+        //we are going to check if the map contains that other part, if it doesnt we are going to add the summation of it
+        // which is going to be nums[i] (the element) along with the index it is at
+        //if we do contain the complement, then we return create  a new array that has the index of the complement along           //with the current index.
+        //O(n) time complexity
+        for(int i =0; i<nums.length; i++){
+            complement = target-nums[i];
+            if(map.containsKey(complement))
+                return new int[] {map.get(complement), i};
+            map.put(nums[i],i);
+        }
+        
+        
+    return nums;
+    }
+
+}
