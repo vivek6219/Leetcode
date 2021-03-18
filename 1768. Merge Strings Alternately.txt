@@ -1,0 +1,30 @@
+//Time complexity: O(n+m)
+//Space complexity O(n+m)
+class Solution {
+    public String mergeAlternately(String word1, String word2) {
+        StringBuilder sb = new StringBuilder(word1);
+        StringBuilder comb = new StringBuilder();
+        sb.append(word2);
+        
+        int len1 = word1.length();
+        int len2= word2.length();
+       
+        int i=0, j=0,k=0;
+        //abcd
+        //pq
+        //a
+        while(i<sb.length()){
+            if(j<len1)
+                comb.append(word1.charAt(j));
+            if(k<len2)
+                comb.append(word2.charAt(k));
+            
+            i++;
+            j++;
+            k++;
+        }
+        
+    
+        return comb.toString();
+    }
+}
