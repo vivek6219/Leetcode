@@ -1,3 +1,7 @@
+//Explanation:
+// we are using two pointers to iterate through the entire string (like a sliding window)
+//as we are going through the string, as soon as we see a character that is already inside the string
+//we remove the character from the set, and add the current repeated character.
 class Solution {
     public int lengthOfLongestSubstring(String s) {
 
@@ -13,6 +17,29 @@ class Solution {
             map.put(s.charAt(i),i);
             max=Math.max(max,i-j+1);
         }
+        return max;
+    }
+}
+//using a hashset
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        Set<Character> set = new HashSet<>();
+        int i = 0;
+        int j = 0;
+        
+        int max=0;
+        
+        while(j<s.length()){
+            if(!set.contains(s.charAt(j))){
+                set.add(s.charAt(j));
+                j++;
+                max=Math.max(set.size(), max);
+            }else{
+                set.remove(s.charAt(i));
+                i++;
+            }
+        }
+    
         return max;
     }
 }
