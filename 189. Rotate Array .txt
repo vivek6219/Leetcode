@@ -1,19 +1,39 @@
 class Solution {
+    //Time complexity: O(n);
+    //Space Complexity= O(1);
     public void rotate(int[] nums, int k) {
-        k=k % nums.length;
+        k=k%nums.length; //do modulo to prevent out of bounds if k is greater than nums.length( want to shift                              //1000 times instead of just the length of array)
         reverse(nums, 0, nums.length-1);
-        reverse(nums, 0, k-1);
-        reverse(nums,k,nums.length-1);
+        reverse(nums, 0,k-1);
+        reverse(nums,k, nums.length-1);
     }
     
     public void reverse(int[] nums, int start, int end){
+        int temp=0;
         while(start<end){
-            int temp=nums[start];
+            temp=nums[start];
             nums[start]=nums[end];
             nums[end]=temp;
             start++;
             end--;
         }
     }
-    
+}
+
+
+class Solution {
+    public void rotate(int[] nums, int k) {
+        //Brute force method
+        //Time:O(n)
+        //Space:O(n)
+        int len = nums.length;
+        int[] copy = new int[len];
+        for(int i=0; i<len; i++){
+            copy[(i+k)%len]=nums[i];
+        }
+        int index=0;
+        for(int num: copy){
+            nums[index++]=num;
+        }
+    }
 }

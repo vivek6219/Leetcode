@@ -1,0 +1,14 @@
+class Compute 
+{
+    static pair getMinMax(long a[], long n)  
+    {
+        
+        Arrays.sort(a);
+        long min = a[0];
+        long max = a[a.length-1];
+        
+        return new pair(min,max);
+        
+        
+    }
+}

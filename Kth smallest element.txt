@@ -1,0 +1,8 @@
+public static int kthSmallest(int[] arr, int l, int r, int k) 
+    { 
+        //Your code here
+        Arrays.sort(arr);
+        if(k<1)
+            return arr[0];
+        return arr[k-1];
+    } 

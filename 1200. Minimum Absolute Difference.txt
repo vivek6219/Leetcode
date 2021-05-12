@@ -1,0 +1,38 @@
+class Solution {
+    public List<List<Integer>> minimumAbsDifference(int[] arr) {
+        //Time Complexity: O(n)
+        //Space Complexity: O(n)
+        
+        
+        Arrays.sort(arr);
+        List<List<Integer>> total = new ArrayList<>();
+        
+        int diff=arr[1]-arr[0];
+        for(int i=0; i<arr.length-1; i++){
+            List<Integer> pairs = new ArrayList<>();
+            
+            if(diff>(arr[i+1]-arr[i])){
+                diff=arr[i+1]-arr[i];
+                pairs.clear();
+                total.clear();
+                pairs.add(arr[i]);
+                pairs.add(arr[i+1]);
+                total.add(pairs);
+            }
+            else if(diff== (arr[i+1]-arr[i])){
+                
+                pairs.add(arr[i]);
+                pairs.add(arr[i+1]);
+                total.add(pairs);
+            }
+            
+
+        }
+        
+        return total;
+    }
+}
+
+//[40,11,26,27,-20]
+// sorted: [-20,11,26,27,40]
+// ans: [ [26,27] ]
