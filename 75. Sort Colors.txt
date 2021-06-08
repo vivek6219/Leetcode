@@ -1,0 +1,63 @@
+//brute force
+class Solution {
+    public void sortColors(int[] nums) {
+        int red = 0;
+        int white =0;
+        int blue = 0;
+        for(int i =0; i<nums.length; i++){
+            if(nums[i]==0)
+                red++;
+            else if(nums[i]==1)
+                white++;
+            else
+                blue++;
+        }
+        
+        
+        for(int i =0; i<nums.length; i++){
+            if(red>0){
+                nums[i]=0;
+                red--;
+            }else if(white>0){
+                nums[i]=1;
+                white--;
+            }else if(blue>0){
+                nums[i]=2;
+                blue--;
+            }
+                
+        }
+    }
+}
+
+//one pass method
+//just move all the zeros to the front and twos to the back 
+//the ones will remain where they are
+class Solution {
+    public void sortColors(int[] nums) {
+        int low=0;
+        int med=0;
+        int high = nums.length-1;
+        
+        while(med<=high){
+            int temp;
+            if(nums[med]==0){
+                temp=nums[med];
+                nums[med]=nums[low];
+                nums[low]=temp;
+                
+                low++;
+                med++;
+            }else if(nums[med]==1){
+                med++;
+                
+            }else if(nums[med]==2){
+                temp=nums[med];
+                nums[med]=nums[high];
+                nums[high]=temp;
+                high--;
+            }
+        }
+    
+    }
+}

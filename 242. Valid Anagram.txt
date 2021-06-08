@@ -1,0 +1,48 @@
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        //count each character in the string and their number of occurences
+        //see if both string contains the same number of characters
+        
+        //Time complexity: O(n+n)=O(2n)=O(n)
+        //space complexity: O(n+n) =O(2n)=O(n)
+        if(s.length()!=t.length())
+            return false;
+        
+        
+        Map<Character,Integer> first = new HashMap<>();
+        Map<Character,Integer> second = new HashMap<>();
+    
+        for(char c : s.toCharArray()){
+            first.put(c,first.getOrDefault(c,0)+1);
+        }
+        
+        for(char c : t.toCharArray()){
+            second.put(c,second.getOrDefault(c,0)+1);
+        }
+        
+        if(first.equals(second))
+            return true;
+        return false;
+    }
+} 
+
+class Solution {
+    public boolean isAnagram(String s, String t) {
+      
+        if(s.length()!=t.length())
+            return false;
+        
+        int charCount[] = new int[26];
+        for(int i=0; i<s.length(); i++){
+            charCount[s.charAt(i)-'a']++;
+            charCount[t.charAt(i)-'a']--;
+        }
+        
+        for(int count: charCount){
+            if(count!=0)
+                return false;
+        }
+        
+        return true;
+    }
+} 
